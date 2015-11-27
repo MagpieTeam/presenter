@@ -12,13 +12,7 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
         <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="<%= static_path(@conn, "/js/lib/dygraph-1.0.combined.js") %>"></script>
-        <script src="<%= static_path(@conn, "/js/lib/spin-1.3.0.min.js") %>"></script>
-        <script src="<%= static_path(@conn, "/js/lib/moment-2.1.0.min.js") %>"></script>
-
-        <script src="<%= static_path(@conn, "/js/JGS.ServerDataSimulator.js") %>"></script>
-        <script src="<%= static_path(@conn, "/js/JGS.GraphDataProvider.js") %>"></script>
-        <script src="<%= static_path(@conn, "/js/JGS.Demo1Page.js") %>"></script>
+        <script src="<%= static_path(@conn, "/js/dygraph-1.0.combined.js") %>"></script>
   </head>
 
   <body>

@@ -15,8 +15,11 @@ defmodule MagpiePresenter.SensorController do
     |> render("batchView.html")
   end
 
-  def live(conn, _params) do
-    render conn, "liveView.html"
+  def live(conn, params) do
+    
+    conn
+    |> assign(:sensor, Magpie.DataAccess.Sensor.get(params["id"]))
+    |> render("liveView.html")
   end
 
   def get_data(conn, params) do

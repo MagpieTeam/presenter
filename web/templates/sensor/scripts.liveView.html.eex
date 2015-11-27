@@ -1,7 +1,38 @@
-    <script> var socket = require('web/static/js/socket');
-      socket.connect();
-      var channel = socket.channel('topic:subtopic', {});
-      channel.join()
-        .receive('ok', function (resp) { console.log('Joined successfully', resp); })
-        .receive('error', function (resp) { console.log('Unable to join', resp); });
+    <script type="text/javascript">
+      var data = [];
+
+      g = new Dygraph(
+
+        document.getElementById("graphdiv"),
+
+        data,
+        {
+          labels: ["x", "<%= @sensor[:unit_of_measure] %>"],
+        }
+      );
+    </script>
+
+
+    <script> 
+      $(document).ready(function(){
+        var socket = require('web/static/js/socket');
+        socket.connect();
+        var channel = null;
+        $("#live_start").click(function(){
+        data = [];
+        g.updateOptions( {'file': data} );
+        channel = socket.channel('sensors:<%= @sensor[:id] %>', {});
+        channel.on("new_log", function(msg){
+          console.log(msg);
+          data.push([msg.timestamp, msg.value]);
+          g.updateOptions( {'file': data} );
+        });
+        channel.join()
+          .receive('ok', function (resp) { console.log('Joined successfully', resp); })
+          .receive('error', function (resp) { console.log('Unable to join', resp); });
+        });
+        $("#live_stop").click(function(){
+          channel.leave();
+        });
+      });
     </script>

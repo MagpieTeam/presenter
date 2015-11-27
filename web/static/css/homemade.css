@@ -22,3 +22,11 @@ body > div.container > div > div:nth-child(2) > div:nth-child(2) > input {
 	width: 100%;
 	height: 400px;
 }
+
+.batchdate {
+	padding-top: 20px;
+}
+
+.form-inline .form-group input {
+	width: 250px;
+}

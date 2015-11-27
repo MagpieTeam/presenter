@@ -1,16 +1,13 @@
 
-
   <div class="col-sm-12">
+    <h1 class="text-center"><%= @sensor[:name] %></h1>
+    <p class="text-center"><%= @sensor[:id] %></p>
     <div id="graphdiv" class="graphsize"></div>
       
-    <div>
-      <div class="col-sm-5">
-       <input type="date" class="form-control" placeholder="Vælg startdato" aria-describedby="basic-addon1" id="from">
-      </div>
-      <div class="col-sm-5">
+    <div class="col-sm-12 form-inline text-center batchdate">
+      <div class="form-group">
+        <input type="date" class="form-control" placeholder="Vælg startdato" aria-describedby="basic-addon1" id="from">
         <input type="date" class="form-control" placeholder="Vælg slutdato" aria-describedby="basic-addon1" id="to">
-      </div>
-      <div class="col-sm-2">
         <button href="" class="btn btn-success" id="get_data">Vis</button>
       </div>
     </div>
