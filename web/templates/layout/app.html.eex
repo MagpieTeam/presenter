@@ -8,24 +8,51 @@
     <meta name="author" content="">
 
     <title>Hello Phoenix!</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+        <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="<%= static_path(@conn, "/js/lib/dygraph-1.0.combined.js") %>"></script>
+        <script src="<%= static_path(@conn, "/js/lib/spin-1.3.0.min.js") %>"></script>
+        <script src="<%= static_path(@conn, "/js/lib/moment-2.1.0.min.js") %>"></script>
+
+        <script src="<%= static_path(@conn, "/js/JGS.ServerDataSimulator.js") %>"></script>
+        <script src="<%= static_path(@conn, "/js/JGS.GraphDataProvider.js") %>"></script>
+        <script src="<%= static_path(@conn, "/js/JGS.Demo1Page.js") %>"></script>
   </head>
 
   <body>
-    <div class="container" role="main">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-        </ul>
-        <span class="logo"></span>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
       </div>
+        <button type="button" class="btn btn-default navbar-btn navbar-left">Start</button>
+        <button type="button" class="btn btn-default navbar-btn navbar-right">Login</button>
+    </div>
+  </nav>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+<div class="container-fluid" role="main">
 
+  <div class="row">
+    <div class="col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+      <li role="presentation"><a href="">Dashboard</a></li>
+      <li role="presentation"><a href="">Loggere</a></li>
+      <li role="presentation"><a href="">Book logger</a></li>
+      <li role="presentation"><a href="">Om Hitler</a></li>
+    </ul>
+    </div>
+
+      <!--<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>-->
+    <div class="col-md-offset-2">
       <%= @inner %>
+    </div>
 
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </div>
+</div> <!-- /container -->
+
+    <%= render_existing view_module(@conn), "scripts." <> Phoenix.Controller.view_template(@conn), assigns %>
+
   </body>
 </html>

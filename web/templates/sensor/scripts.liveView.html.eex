@@ -1,0 +1,7 @@
+    <script> var socket = require('web/static/js/socket');
+      socket.connect();
+      var channel = socket.channel('topic:subtopic', {});
+      channel.join()
+        .receive('ok', function (resp) { console.log('Joined successfully', resp); })
+        .receive('error', function (resp) { console.log('Unable to join', resp); });
+    </script>

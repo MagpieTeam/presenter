@@ -17,6 +17,10 @@ defmodule MagpiePresenter.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/sensors", SensorController, :index
+    get "/sensors/:id/batch", SensorController, :batch
+    get "/sensors/:id/live", SensorController, :live
+    get "/sensors/:id/batch/get_data", SensorController, :get_data
   end
 
   # Other scopes may use custom stacks.

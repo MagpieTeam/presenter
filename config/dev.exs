@@ -40,3 +40,7 @@ config :magpie_presenter, MagpiePresenter.Repo,
   database: "magpie_presenter_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :cqerl,
+  cassandra_nodes: [{{192,168,33,10}, 9042}],
+  keypace: "magpie"

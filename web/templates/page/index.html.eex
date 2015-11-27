@@ -4,7 +4,7 @@
 </div>
 
 <div class="row marketing">
-  <div class="col-lg-6">
+  <div class="col-lg-4">
     <h4>Resources</h4>
     <ul>
       <li>
@@ -19,7 +19,7 @@
     </ul>
   </div>
 
-  <div class="col-lg-6">
+  <div class="col-lg-8">
     <h4>Help</h4>
     <ul>
       <li>

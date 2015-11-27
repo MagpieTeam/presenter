@@ -1,0 +1,47 @@
+
+
+  <div class="col-sm-12">
+    <div id="graphdiv" class="graphsize"></div>
+      
+    <div>
+      <div class="col-sm-5">
+       <input type="date" class="form-control" placeholder="Vælg startdato" aria-describedby="basic-addon1" id="from">
+      </div>
+      <div class="col-sm-5">
+        <input type="date" class="form-control" placeholder="Vælg slutdato" aria-describedby="basic-addon1" id="to">
+      </div>
+      <div class="col-sm-2">
+        <button href="" class="btn btn-success" id="get_data">Vis</button>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  g = new Dygraph(
+    // containing div
+    document.getElementById("graphdiv"),
+
+    // CSV or path to a CSV file.
+    [],
+    {
+      labels: ["x", "<%= @sensor[:unit_of_measure] %>"],
+    });
+  $(document).ready(function() {
+    $("#get_data").click(function(){
+      var from = $("#from").val();
+      var to = $("#to").val();
+      var url = "/sensors/<%= @sensor[:id] %>/batch/get_data?from=" + from + "&to=" + to;
+      console.log(url);
+
+      $.get("/sensors/<%= @sensor[:id] %>/batch/get_data?from=" + from + "&to=" + to)/*,
+        success: function(data, status, xhr){
+          g.updateOptions({file: data});
+        }*/
+      .done(function(data, status, xhr){
+        g.updateOptions({file: data})
+      }).fail(function(data, status, xhr){
+        console.log("fail");
+      });
+    });
+  });
+</script>

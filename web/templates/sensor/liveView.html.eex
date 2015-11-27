@@ -1,0 +1,30 @@
+  <div class="col-sm-12">
+    <div id="graphdiv" class="graphsize"></div>
+      
+    </div>
+
+<script type="text/javascript">
+  g = new Dygraph(
+
+    // containing div
+    document.getElementById("graphdiv"),
+
+    // CSV or path to a CSV file.
+    "Date,Temperature\n" +
+    "2008-05-07,75\n" +
+    "2008-05-08,70\n" +
+    "2008-05-09,80\n"
+
+  );
+</script>
+
+<!--<script type="text/javascript">
+$(document).ready(function () {
+  var pagecfg = {
+    $graphCont: $("#graphdiv")
+  };
+var demo1page = new JGS.Demo1Page(pagecfg);
+demo1page.init();
+});-->
+
+</script>
