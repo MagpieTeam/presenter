@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Phoenix!</title>
+    <title>Hello Magpie!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
         <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
@@ -39,7 +39,6 @@
       <li role="presentation"><a href="">Dashboard</a></li>
       <li role="presentation"><a href="">Loggere</a></li>
       <li role="presentation"><a href="">Book logger</a></li>
-      <li role="presentation"><a href="">Om Hitler</a></li>
     </ul>
     </div>
 
