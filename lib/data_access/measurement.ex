@@ -6,11 +6,11 @@ defmodule Magpie.DataAccess.Measurement do
     dates = get_dates(from, to, [])
     
     Enum.reduce(dates, [], fn (date, acc) -> 
-      {:ok, day} = DateFormat.format(date, "%Y-%m-%d", :strftime)
+      {:ok, day} = DateFormat.format(date, "{YYYY}-{0M}-{0D}")
       get(id, day) ++ acc
     end)
   end
-  
+
   def get(id, date) do
     {:ok, client} = :cqerl.new_client()
     {:ok, result} = :cqerl.run_query(client, "SELECT * FROM magpie.measurements WHERE sensor_id=#{id} AND date='#{date}' ORDER BY timestamp DESC;")
