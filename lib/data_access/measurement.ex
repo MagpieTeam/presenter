@@ -1,9 +1,19 @@
 defmodule Magpie.DataAccess.Measurement do
   use Timex
-  
+
   def get(id, from, to) do
+    # get all dates
+    dates = get_dates(from, to, [])
+    
+    Enum.reduce(dates, [], fn (date, acc) -> 
+      {:ok, day} = DateFormat.format(date, "%Y-%m-%d", :strftime)
+      get(id, day) ++ acc
+    end)
+  end
+  
+  def get(id, date) do
     {:ok, client} = :cqerl.new_client()
-    {:ok, result} = :cqerl.run_query(client, "SELECT * FROM magpie.measurements WHERE sensor_id=#{id} AND date='#{from}' ORDER BY timestamp DESC;")
+    {:ok, result} = :cqerl.run_query(client, "SELECT * FROM magpie.measurements WHERE sensor_id=#{id} AND date='#{date}' ORDER BY timestamp DESC;")
 
     #unpack([], {:ok, result})
     unpack([], result)
@@ -11,8 +21,10 @@ defmodule Magpie.DataAccess.Measurement do
 
   def get_dates(from, to, dates) do
     case Date.compare(from, to) do
-      -1 -> get_dates(Date.add(Time.to_timestap(1, :days)), to, from ++ dates)
-      0 -> from ++ dates
+      -1 ->
+        next_day = Date.add(from, Time.to_timestamp(1, :days)) 
+        get_dates(next_day, to, [from | dates])
+      0 -> [from | dates]
       1 -> []
     end
   end
