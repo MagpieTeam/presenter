@@ -22,6 +22,17 @@
     [],
     {
       labels: ["x", "<%= @sensor[:unit_of_measure] %>"],
+      axes: 
+      { 
+        x : 
+        { 
+          //valueFormatter: Dygraph.dateString_,
+          ticker: Dygraph.dateTicker,
+          axisLabelFormatter: function(d) {
+            return d.strftime('%H-%M');
+          }
+        }
+      }
     });
   $(document).ready(function() {
     $("#get_data").click(function(){
