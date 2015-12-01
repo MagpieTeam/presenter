@@ -25,6 +25,9 @@
         channel.on("new_log", function(msg){
           console.log(msg);
           data.push([msg.timestamp, msg.value]);
+          if (data.length > 1000) {
+            data.shift();
+          }
           g.updateOptions( {'file': data} );
         });
         channel.join()
