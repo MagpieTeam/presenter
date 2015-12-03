@@ -1,0 +1,23 @@
+<h1>ret bruger: <%= @user[:username] %></h1>
+<form action="/users/<%= @user[:username] %>/update" method="POST">
+  <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+  <input type="hidden" name="_method" value="PUT">
+  <div class="col-md-12 col-sm-12 input-group">
+    <input type="text" class="col-md-4 col-sm-4" name="username" value="<%= @user[:username] %>">
+  </div>
+  <div class="col-md-12 col-sm-12 input-group">
+    <input type="text" class="col-md-4 col-sm-4" name="email" value="<%= @user[:email] %>">
+  </div>
+  <div class="col-md-12 col-sm-12 input-group">
+    <input type="text" class="col-md-4 col-sm-4" name="password" value="<%= @user[:password] %>">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" value="false" name="state">
+      Admin?
+    </label>
+  </div>
+  <div>
+    <button class="btn btn-primary margininput">Gem ændringer</button>
+  </div>
+</form>

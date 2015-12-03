@@ -28,7 +28,7 @@
 <div class="container-fluid" role="main">
 
   <div class="row">
-    <div class="col-md-2 sidebar">
+    <div class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
       <li role="presentation"><a href="">Dashboard</a></li>
       <li role="presentation"><a href="">Loggere</a></li>
@@ -36,9 +36,13 @@
     </ul>
     </div>
 
-      <!--<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>-->
-    <div class="col-md-offset-2">
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <%= if get_flash(@conn, :info) do %>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn,:error) %></p>
+      <% end %>
       <%= @inner %>
     </div>
 

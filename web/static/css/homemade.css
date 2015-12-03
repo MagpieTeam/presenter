@@ -30,3 +30,7 @@ body > div.container > div > div:nth-child(2) > div:nth-child(2) > input {
 .form-inline .form-group input {
 	width: 250px;
 }
+
+.margininput {
+	margin-top: 10px;
+}
