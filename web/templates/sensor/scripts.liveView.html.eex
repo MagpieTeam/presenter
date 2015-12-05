@@ -1,41 +1,43 @@
-    <script type="text/javascript">
-      var data = [];
+<script type="text/javascript">
+  var data = [];
 
-      g = new Dygraph(
+  g = new Dygraph(
 
-        document.getElementById("graphdiv"),
+    document.getElementById("graphdiv"),
 
-        data,
-        {
-          labels: ["x", "<%= @sensor[:unit_of_measure] %>"],
+    data,
+    {
+      labels: ["x", "<%= @sensor[:unit_of_measure] %>"],
+    }
+  );
+</script>
+
+
+<script> 
+  $(document).ready(function(){
+    var socket = require('web/static/js/socket');
+    socket.connect();
+    var channel = null;
+    $("#live_start").click(function(){
+      data = [];
+      g.updateOptions( {'file': data} );
+      var topic = 'sensors:<%= @sensor[:id] %>';
+      console.log("Topic: " + topic);
+      channel = socket.channel(topic, {});
+      channel.on("new_log", function(msg){
+        console.log(msg);
+        data.push([msg.timestamp, msg.value]);
+        if (data.length > 1000) {
+          data.shift();
         }
-      );
-    </script>
-
-
-    <script> 
-      $(document).ready(function(){
-        var socket = require('web/static/js/socket');
-        socket.connect();
-        var channel = null;
-        $("#live_start").click(function(){
-        data = [];
         g.updateOptions( {'file': data} );
-        channel = socket.channel('sensors:<%= @sensor[:id] %>', {});
-        channel.on("new_log", function(msg){
-          console.log(msg);
-          data.push([msg.timestamp, msg.value]);
-          if (data.length > 1000) {
-            data.shift();
-          }
-          g.updateOptions( {'file': data} );
-        });
-        channel.join()
-          .receive('ok', function (resp) { console.log('Joined successfully', resp); })
-          .receive('error', function (resp) { console.log('Unable to join', resp); });
-        });
-        $("#live_stop").click(function(){
-          channel.leave();
-        });
       });
-    </script>
+      channel.join()
+        .receive('ok', function (resp) { console.log('Joined successfully', resp); })
+        .receive('error', function (resp) { console.log('Unable to join', resp); });
+    });
+    $("#live_stop").click(function(){
+      channel.leave();
+    });
+  });
+</script>
