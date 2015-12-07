@@ -2,14 +2,14 @@
 <form action="/users/<%= @user[:username] %>/update" method="POST">
   <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
   <input type="hidden" name="_method" value="PUT">
-  <div class="col-md-12 col-sm-12 input-group">
-    <input type="text" class="col-md-4 col-sm-4" name="username" value="<%= @user[:username] %>">
+  <div class="col-md-12 col-sm-12 input-group margininput">
+    <input type="text" class="col-md-4 col-sm-4" name="username" placeholder="skift brugernavn" value="<%= @user[:username] %>">
   </div>
-  <div class="col-md-12 col-sm-12 input-group">
-    <input type="text" class="col-md-4 col-sm-4" name="email" value="<%= @user[:email] %>">
+  <div class="col-md-12 col-sm-12 input-group margininput">
+    <input type="text" class="col-md-4 col-sm-4" name="email" placeholder="Skift email" value="<%= @user[:email] %>">
   </div>
-  <div class="col-md-12 col-sm-12 input-group">
-    <input type="text" class="col-md-4 col-sm-4" name="password" value="<%= @user[:password] %>">
+  <div class="col-md-12 col-sm-12 input-group margininput">
+    <input type="text" class="col-md-4 col-sm-4" name="password" placeholder="skift password" value="<%= @user[:password] %>">
   </div>
   <div class="checkbox">
     <label>

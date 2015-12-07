@@ -1,7 +1,7 @@
 <h1>Opret bruger</h1>
 <form action="/users/create" method="POST">
   <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-  <div class="col-md-12 col-sm-12 input-group">
+  <div class="col-md-12 col-sm-12 input-group margininput">
     <input type="text" class="col-md-4 col-sm-4" placeholder="brugernavn" name="username">
   </div>
   <div class="col-md-12 col-sm-12 input-group margininput">
@@ -12,11 +12,11 @@
   </div>
   <div class="checkbox">
     <label>
-      <input type="checkbox" value="false" name="state">
+      <input type="checkbox" value="true" name="state">
       Admin?
     </label>
   </div>
-  <div>
+  <div class="margininput">
     <button class="btn btn-primary">Gem bruger</button>
   </div>
 </form>

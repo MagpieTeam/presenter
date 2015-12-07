@@ -5,12 +5,17 @@ defmodule MagpiePresenter.UserController do
     email = params["email"]
     username = params["username"]
     password = params["password"]
+    IO.inspect(email)
+    IO.inspect(username)
+    IO.inspect(password)
 
     if params["state"] == "true" do
       admin = true
     else
       admin = false
     end
+
+    IO.inspect(admin)
     if password != "" && username != "" && email != "" do
 
       case Magpie.DataAccess.User.put(email, username, password, admin) do
@@ -42,9 +47,8 @@ defmodule MagpiePresenter.UserController do
   end
 
   def show(conn, params) do
-    IO.inspect(params["email"])
-    {:ok, user} = Magpie.DataAccess.User.get(params["email"])
-
+    IO.inspect(params["id"])
+    {:ok, user} = Magpie.DataAccess.User.get(params["id"])
 
     conn
     |> assign(:user, user)
@@ -52,7 +56,7 @@ defmodule MagpiePresenter.UserController do
   end
 
   def edit(conn, params) do
-    {:ok, user} = Magpie.DataAccess.User.get(params["email"])
+    {:ok, user} = Magpie.DataAccess.User.get(params["id"])
   
     conn
     |> assign(:user, user)
@@ -60,9 +64,9 @@ defmodule MagpiePresenter.UserController do
   end
 
   def delete(conn, params) do
-    email = params["email"]
+    id = params["id"]
 
-    case Magpie.DataAccess.User.delete(email) do
+    case Magpie.DataAccess.User.delete(id) do
       :ok ->
         conn
         |> put_flash(:info, "bruger slettet")
@@ -70,16 +74,16 @@ defmodule MagpiePresenter.UserController do
       :error ->
         conn
         |> put_flash(:info, "database fejl")
-        |> redirect(to: "/users/#{email}")
+        |> redirect(to: "/users/#{id}")
     end
   end
 
   def update(conn, params) do
-    IO.inspect(params)
     username = params["username"]
     email = params["email"]
     password = params["password"]
-
+    id = params["id"]
+    
     if params["state"] == "true" do
       admin = true
     else
@@ -88,7 +92,7 @@ defmodule MagpiePresenter.UserController do
 
     if password != "" && username != "" && email != "" do
 
-      case Magpie.DataAccess.User.put(email, username, password, admin) do
+      case Magpie.DataAccess.User.put(email, username, password, admin, id) do
       :ok ->
 
         conn

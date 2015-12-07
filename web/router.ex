@@ -32,11 +32,11 @@ defmodule MagpiePresenter.Router do
 
     get "/users", UserController, :index
     get "/users/new", UserController, :new
-    get "/users/:email", UserController, :show
-    get "/users/:email/edit", UserController, :edit
-    delete "/users/:email", UserController, :delete
+    get "/users/:id", UserController, :show
+    get "/users/:id/edit", UserController, :edit
+    delete "/users/:id", UserController, :delete
     post "/users/create", UserController, :create
-    put "/users/:email/update", UserController, :update
+    put "/users/:id/update", UserController, :update
   end
 
   # Other scopes may use custom stacks.

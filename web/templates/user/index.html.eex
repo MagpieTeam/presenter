@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <%= for u <- @users do %>
-        <tr onclick="window.document.location='/users/<%= u[:email] %>';">
+        <tr onclick="window.document.location='/users/<%= u[:id] %>';">
           <td>
             <%= u[:username] %>
           </td>
@@ -26,6 +26,9 @@
           </td>
           <td>
             <%= u[:admin] %>
+          </td>
+          <td>
+            <%= u[:id] %>
           </td>
         </tr>
       <% end %>
