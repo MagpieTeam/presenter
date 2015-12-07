@@ -8,12 +8,12 @@
   </div>
   <div class="col-sm-12 col-md-12 margininput">
     <div class="col-md-2 col-sm-2">
-      <a role="button" href="/users/<%= @user[:email] %>/edit" class="btn btn-primary">Ret bruger</a>
+      <a role="button" href="/users/<%= @user[:id] %>/edit" class="btn btn-primary">Ret bruger</a>
     </div>
-    <form method="POST" action="/users/<%= @user[:email] %>" onsubmit="return confirm('er du sikker på at du vil slette <%= @user[:username] %> ?');">
+    <form method="POST" action="/users/<%= @user[:id] %>" onsubmit="return confirm('er du sikker på at du vil slette <%= @user[:username] %> ?');">
       <input type="hidden" name="_method" value="DELETE">
       <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-      <button type="button" class="btn btn-primary">Slet bruger</button>
+      <button class="btn btn-primary">Slet bruger</button>
     </form>
   </div>
 </div>
@@ -33,4 +33,18 @@
       //document.getElementById("demo").innerHTML = "Nej";
     }
   });
+</script>
+
+<script type="text/javascript">
+  function delete_user() {
+    $.ajax({
+      url: "/users/<%= @user[:id] %>",
+      data: { _csrf_token: "<%= get_csrf_token %>"},
+      type: "DELETE"
+    }).done(function(){
+      window.location.replace("/users");
+    }).fail(function(){
+      console.log("fail");
+    });
+  };
 </script>
