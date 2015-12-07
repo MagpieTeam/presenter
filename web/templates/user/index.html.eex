@@ -27,9 +27,6 @@
           <td>
             <%= u[:admin] %>
           </td>
-          <td>
-            <%= u[:id] %>
-          </td>
         </tr>
       <% end %>
     </table>

@@ -21,7 +21,11 @@
       <div class="navbar-header">
       </div>
         <button type="button" class="btn btn-default navbar-btn navbar-left">Start</button>
-        <button type="button" class="btn btn-default navbar-btn navbar-right">Login</button>
+        <%= if @current_user do %>
+          <a href="/logout" type="button" class="btn btn-default navbar-btn navbar-right marginright">Logout</a>
+        <%= else %>
+          <a href="/login" type="button" class="btn btn-default navbar-btn navbar-right marginright">Login</a>
+        <% end %>
     </div>
   </nav>
 

@@ -38,3 +38,7 @@ body > div.container > div > div:nth-child(2) > div:nth-child(2) > input {
 .marginleft {
 	margin-left: 15px;
 }
+
+.marginright {
+	margin-right: 15px;
+}

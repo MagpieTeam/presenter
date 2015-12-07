@@ -1,0 +1,19 @@
+<div class="col-md-12 col-sm-12">
+  <div class="col-md-12 col-sm-12 text-center">
+    <h2>Velkommen til Magpie!</h2>
+  </div>
+  <form action="/login" method="POST">
+    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+    <div class="col-md-12 col-sm-12 text-center">
+      <input type="text" placeholder="Email" name="email">
+    </div>
+    <div class="col-md-12 col-sm-12 margininput text-center">
+      <input type="password" placeholder="Kode" name="password">
+      <p>Indtast email og kodeord for at logge ind.</p>  
+    </div>
+    <div class="col-md-12 col-sm-12 margininput text-center">
+    <button class="btn btn-primary">Login</button>
+    </div>
+  </form>
+  
+</div>
