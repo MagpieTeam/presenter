@@ -10,8 +10,8 @@ defmodule MagpiePresenter.Router do
     plug MagpiePresenter.FetchUser
   end
 
-    pipeline :auth do
-    #plug MagpiePresenter.Auth
+  pipeline :auth do
+    plug MagpiePresenter.Auth
   end
 
   pipeline :api do
@@ -44,13 +44,12 @@ defmodule MagpiePresenter.Router do
     put "/users/:id/update", UserController, :update
   end
 
-  scope "/auth", MagpiePresenter do
+  scope "/", MagpiePresenter do
     pipe_through :browser
 
     get "/login", AuthController, :new
     post "/login", AuthController, :create
     get "/logout", AuthController, :delete
-
   end
   # Other scopes may use custom stacks.
   # scope "/api", MagpiePresenter do

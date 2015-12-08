@@ -26,16 +26,16 @@ defmodule MagpiePresenter.AuthController do
 
       {:error, msg} ->
         conn
-        |> put_flash(:error, msg)
+        |> put_flash(:error, "Forkert email og password for søren!")
         |> render("login.html")
 
     end
   end
 
   def delete(conn, _params) do
-    conn
-    |> configure_session(drop: true)
-    |> put_flash(:info, "Tak for denne gang! logget ud!")
+    conn    
+    |> delete_session(:user_id)
+    |> put_flash(:error, "Tak for denne gang! logget ud!")
     |> redirect(to: "/login")
   end
 end

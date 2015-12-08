@@ -1,9 +1,8 @@
 defmodule MagpiePresenter.Auth do
   import Plug.Conn
-  use MagpiePresenter.Web, :controller
+  import Phoenix.Controller
 
-  def init(opts) do
-  end
+  def init(opts), do: nil
 
   def call(conn, _) do
     if conn.assigns.current_user do
