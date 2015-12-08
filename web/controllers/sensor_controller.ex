@@ -9,7 +9,6 @@ defmodule MagpiePresenter.SensorController do
   end
 
   def live(conn, params) do
-    
     conn
     |> assign(:sensor, Magpie.DataAccess.Sensor.get(params["id"]))
     |> render("liveView.html")

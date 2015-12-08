@@ -1,9 +1,7 @@
-defmodule MagpiePresenter.AuthController do
+defmodule MagpiePresenter.SessionController do
   use MagpiePresenter.Web, :controller
 
   def new(conn, params) do
-
-
     render(conn, "login.html")
   end
 
