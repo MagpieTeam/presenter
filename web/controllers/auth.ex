@@ -15,4 +15,15 @@ defmodule MagpiePresenter.Auth do
     end
   end
 
+  def require_admin(conn, opts) do
+    if conn.assigns.current_user[:admin] do
+      conn
+    else
+      conn
+      |> put_flash(:error, "Only admin")
+      |> redirect(to: opts[:route])
+      |> halt()
+    end
+  end
+
 end

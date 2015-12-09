@@ -10,11 +10,13 @@
     <div class="col-md-2 col-sm-2">
       <a role="button" href="/users/<%= @user[:id] %>/edit" class="btn btn-primary">Ret bruger</a>
     </div>
+    <%= if @current_user[:admin] do %>
     <form method="POST" action="/users/<%= @user[:id] %>" onsubmit="return confirm('er du sikker på at du vil slette <%= @user[:username] %> ?');">
       <input type="hidden" name="_method" value="DELETE">
       <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
       <button class="btn btn-primary">Slet bruger</button>
     </form>
+    <% end %>
   </div>
 </div>
 

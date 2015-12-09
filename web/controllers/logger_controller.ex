@@ -1,5 +1,7 @@
 defmodule MagpiePresenter.LoggerController do
   use MagpiePresenter.Web, :controller
+  import MagpiePresenter.Auth, only: [require_admin: 2]
+  plug :require_admin, [route: "/"] when action in [:create, :new, :update, :edit, :delete]
 
   def show(conn, params) do
 

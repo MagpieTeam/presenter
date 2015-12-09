@@ -1,5 +1,7 @@
 defmodule MagpiePresenter.UserController do
   use MagpiePresenter.Web, :controller
+  import MagpiePresenter.Auth, only: [require_admin: 2]
+  plug :require_admin, [route: "/"] when action in [:create, :new, :index, :delete]
 
   def create(conn, params) do
     email = params["email"]
@@ -9,7 +11,7 @@ defmodule MagpiePresenter.UserController do
     IO.inspect(username)
     IO.inspect(password)
 
-    if params["state"] == "true" do
+    if params["state"] == "on" do
       admin = true
     else
       admin = false
@@ -17,6 +19,7 @@ defmodule MagpiePresenter.UserController do
 
     IO.inspect(admin)
     if password != "" && username != "" && email != "" do
+      password = Magpie.Password.hash_password(password)
 
       case Magpie.DataAccess.User.put(email, username, password, admin) do
         :ok ->
@@ -84,29 +87,35 @@ defmodule MagpiePresenter.UserController do
     password = params["password"]
     id = params["id"]
     
-    if params["state"] == "true" do
+    if params["state"] == "on" do
       admin = true
     else
       admin = false
     end
 
-    if password != "" && username != "" && email != "" do
+    if username != "" && email != "" do
+      if password == "" do
+        {:ok, user} = Magpie.DataAccess.User.get(id)
+        password = user[:password]
+      else
+        password = Magpie.Password.hash_password(password)
+      end
 
       case Magpie.DataAccess.User.put(email, username, password, admin, id) do
       :ok ->
 
         conn
         |> put_flash(:info, "Bruger opdateret")
-        |> redirect(to: "/users")
+        |> redirect(to: "/users/#{id}")
       :error ->
         conn
         |> put_flash(:error, "database fejl")
-        |> redirect(to: "/users/#{email}/edit")
+        |> redirect(to: "/users/#{id}/edit")
       end
     else
       conn
       |> put_flash(:error, "fejl")
-      |> redirect(to: "/users/#{email}/edit") 
+      |> redirect(to: "/users/#{id}/edit") 
     end          
   end
 end
