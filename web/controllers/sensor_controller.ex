@@ -3,14 +3,19 @@ defmodule MagpiePresenter.SensorController do
   use Timex
 
   def batch(conn, params) do
+    # TODO: if no date given, it returns {:error, "message"}
+    {:ok, sensor} = Magpie.DataAccess.Sensor.get(params["id"], params["logger_id"])
     conn
-    |> assign(:sensor, Magpie.DataAccess.Sensor.get(params["id"]))
+    |> assign(:sensor, sensor)
     |> render("batchView.html")
   end
 
   def live(conn, params) do
+    # TODO: if no date given, it returns {:error, "message"}
+    {:ok, sensor} = Magpie.DataAccess.Sensor.get(params["id"], params["logger_id"])
+    
     conn
-    |> assign(:sensor, Magpie.DataAccess.Sensor.get(params["id"]))
+    |> assign(:sensor, sensor)
     |> render("liveView.html")
   end
 

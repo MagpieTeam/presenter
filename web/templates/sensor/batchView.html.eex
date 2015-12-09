@@ -38,10 +38,10 @@
     $("#get_data").click(function(){
       var from = $("#from").val();
       var to = $("#to").val();
-      var url = "/sensors/<%= @sensor[:id] %>/batch/get_data?from=" + from + "&to=" + to;
+      var url = "/loggers/<%= @sensor[:logger_id] %>/sensors/<%= @sensor[:id] %>/batch/get_data?from=" + from + "&to=" + to;
       console.log(url);
 
-      $.get("/sensors/<%= @sensor[:id] %>/batch/get_data?from=" + from + "&to=" + to)/*,
+      $.get(url)/*,
         success: function(data, status, xhr){
           g.updateOptions({file: data});
         }*/
