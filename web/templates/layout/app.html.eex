@@ -37,8 +37,10 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+        <%= if @current_user do %>
           <li><p class="colorwhite navbar-text">Logget ind som: </p></li>
           <li><a href="/users/<%= @current_user[:id] %>" type="button" class=""><%= @current_user[:username] %></a></li>
+          <%= end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle custom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
             <ul class="dropdown-menu colorred">

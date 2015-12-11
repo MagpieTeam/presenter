@@ -1,16 +1,16 @@
 <div class="col-sm-12 col-md-12">
   <div class="col-sm-4 col-md-4">
-    <h4><%= @logger[:name] %></h4>
+    <h4>Valgt logger: <%= @logger[:name] %></h4>
   </div>
   <%= if @current_user[:admin] do %>
     <div class="col-sm-1 col-md-1 col-sm-offset-5 col-md-offset-5">
-      <button onclick="window.document.location='/loggers/<%= @logger[:id] %>/edit';" class="btn btn-primary">Ret logger</button>
+      <button onclick="window.document.location='/loggers/<%= @logger[:id] %>/edit';" class="btn btn-default">Ret logger</button>
     </div>
     <div class="col-sm-1  col-sm-offset-1 col-md-1 col-md-offset-1">
       <form method="POST" action="/loggers/<%= @logger[:id] %>" onsubmit="return confirm('er du sikker på at du vil slette <%= @logger[:name] %> ?');">
       <input type="hidden" name="_method" value="DELETE">
       <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-      <button class="btn btn-primary">Slet logger</button></form>
+      <button class="btn btn-default">Slet logger</button></form>
     </div>
   <% end %>
 </div>
@@ -18,17 +18,17 @@
   <div class="panel panel-default">
     <div class="panel-heading col-sm-12 col-md-12">
       <div class="col-sm-4 col-md-4">
-        <h5>Sensors</h5>
+        <h5>Tilgængelige sensore</h5>
       </div>
     </div>
     <table class="table table-striped table-hover table-condensed">
     	<thead>
     		<tr>
     			<th>SensorId</th>
-    			<th>Name</th>
-    			<th>Unit Of Measure</th>
-          <th>BatchView</th>
-          <th>LiveView</th>
+    			<th>Navn</th>
+    			<th>Måleenhed</th>
+          <th>Batch</th>
+          <th>Live</th>
     		</tr>
     	</thead>
     	<%= for s <- @sensors do %>
@@ -43,10 +43,10 @@
           <%= s[:unit_of_measure] %>
         </td>
         <td>
-          <a href="/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/batch" class ="btn btn-primary">BatchView</a>
+          <a href="/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/batch" class ="btn btn-default">BatchView</a>
         </td>
         <td>
-          <a href= "/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/live" class ="btn btn-primary">LiveView</a>
+          <a href= "/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/live" class ="btn btn-default">LiveView</a>
         </td>
       </tr>
       <% end %>

@@ -29,6 +29,6 @@
   </div>
   <% end %>
   <div>
-    <button class="btn btn-primary margininput">Gem ændringer</button>
+    <button class="btn btn-success margininput">Gem ændringer</button>
   </div>
 </form>

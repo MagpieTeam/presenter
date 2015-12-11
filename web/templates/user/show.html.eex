@@ -1,21 +1,21 @@
 <div class="col-sm-12 col-md-12">
   <div class="col-sm-4 col-md-4">
-    <h2><%= @user[:username] %></h2>
+    <h2>Valgt bruger: <%= @user[:username] %></h2>
   </div>
   <div class="text-left col-sm-12 col-md-12 margininput">
-    <p>Email: <%= @user[:email] %></p>
-    <p id="demo">Admin rettigheder: </p>
+    <p><b>Email:</b> <%= @user[:email] %></p>
+    <p id="demo"><b>Admin rettigheder: </b></p>
   </div>
   <div class="col-sm-12 col-md-12 margininput">
     <div class="col-md-2 col-sm-2 marginminus">
-      <a role="button" href="/users/<%= @user[:id] %>/edit" class="btn btn-primary">Ret bruger</a>
+      <a role="button" href="/users/<%= @user[:id] %>/edit" class="btn btn-default">Ret bruger</a>
     </div>
     <%= if @current_user[:admin] do %>
       <div class="col-sm-2 col-md-2 marginminusbig">
         <form method="POST" action="/users/<%= @user[:id] %>" onsubmit="return confirm('er du sikker på at du vil slette <%= @user[:username] %> ?');">
           <input type="hidden" name="_method" value="DELETE">
           <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-          <button class="btn btn-primary">Slet bruger</button>
+          <button class="btn btn-default">Slet bruger</button>
         </form>
       </div>
     <% end %>
@@ -28,13 +28,11 @@
 
     if (test == true)
     {
-      $("#demo").append("<b> Ja </b>");
-      //document.getElementById("demo").innerHTML = "Ja";
+      $("#demo").append("Ja");
     }
     else
     {
-      $("#demo").append("<b> Nej </b>");
-      //document.getElementById("demo").innerHTML = "Nej";
+      $("#demo").append("Nej");
     }
   });
 </script>
