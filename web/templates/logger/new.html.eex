@@ -5,7 +5,7 @@
     <input type="text" class="col-md-4 col-sm-4" placeholder="brugernavn" name="name">
   </div>
   <div class="col-md-12 col-sm-12 input-group margininput">
-    <input type="text" class="col-md-4 col-sm-4" placeholder="password" name="password">
+    <input type="text" class="col-md-4 col-sm-4" placeholder="Token" name="password">
   </div>
     <p class="margininput">Id til indtastning i loggeren genereres automatisk.</p>
   <div>
