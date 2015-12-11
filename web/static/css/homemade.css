@@ -35,10 +35,57 @@ body > div.container > div > div:nth-child(2) > div:nth-child(2) > input {
 	margin-top: 15px;
 }
 
+.marginbottombig {
+	margin-bottom: 40px;
+}
+
 .marginleft {
 	margin-left: 15px;
 }
 
 .marginright {
 	margin-right: 15px;
+}
+
+.marginbottom {
+	margin-bottom: 15px;
+}
+
+.marginminus {
+	margin-left: -15px;
+}
+
+.marginminussmall {
+	margin-left: -1px;
+}
+
+.marginminusbig {
+	margin-left: -35px;
+}
+
+.colorred {
+	background-color: #B40404;
+}
+
+.button {
+    color: #FFFFFF;
+}
+
+.nav.navbar-nav.navbar-right > li a {
+    color: #FFFFFF;
+}
+
+.nav.navbar-nav.navbar-right li p {
+    color: #FFFFFF;
+}
+
+.birdsize {
+	width: 55px;
+	height: 55px;
+	margin-top: -19px;
+}
+	
+
+#bs-example-navbar-collapse-1 > ul > li.dropdown.open > a {
+	background-color: #B40404;
 }

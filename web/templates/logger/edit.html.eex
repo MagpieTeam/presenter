@@ -1,25 +1,37 @@
-<h1>ret logger: <%= @logger[:name] %></h1>
-<form action="/loggers/<%= @logger[:id] %>/update" method="POST">
-  <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-  <input type="hidden" name="_method" value="PUT">
-  <div class="col-md-12 col-sm-12 input-group">
-    <input type="text" class="col-md-4 col-sm-4" name="name" value="<%= @logger[:name] %>">
+<div class="col-md-12 col-sm-12">
+  <div class="col-md-12 col-sm-12 marginbottom marginminus">
+    <h1 class="marginbottombig">Ret logger: <%= @logger[:name] %></h1>
   </div>
-  <div class="col-md-12 col-sm-12 input-group margininput">
-    <div class="radio">
-      <label>
-        <input type="radio" name="passwordradio" id="optionsRadios1" value="true" class="col-md-2 col-sm-2">
-        Ja
-      </label>
+  <div class="col-md-12 col-sm-12 marginbottom marginminus">
+    <b>Logger id: <%= @logger[:id] %></b>
+  </div>
+  <form action="/loggers/<%= @logger[:id] %>/update" method="POST">
+    <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="col-md-1 col-sm-1 marginminus">
+      <b>Navn:</b>
     </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="passwordradio" id="optionsRadios2" value="false" class="col-md-2 col-sm-2">
-        Nej
-      </label>
+    <div class="col-md-11 col-sm-11 input-group">
+      <input type="text" class="marginminus" name="name" value="<%= @logger[:name] %>">
     </div>
-  </div>
-  <div>
-    <button class="btn btn-primary margininput">Gem ændringer</button>
-  </div>
-</form>
+    <div class="col-md-12 col-sm-12 input-group margininput">
+      <p>Ønskes et nyt token?</p>
+      <div class="radio">
+        <label>
+          <input type="radio" name="passwordradio" id="optionsRadios1" value="true" class="col-md-1 col-sm-1">
+          Ja
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="passwordradio" id="optionsRadios2" value="false" class="col-md-1 col-sm-1">
+          Nej
+        </label>
+      </div>
+      <p>Et nyt token vil blive autogenereret.</p>
+    </div>
+    <div>
+      <button class="btn btn-primary margininput">Gem ændringer</button>
+    </div>
+  </form>
+</div>

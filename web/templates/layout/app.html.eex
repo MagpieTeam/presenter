@@ -9,39 +9,59 @@
 
     <title>Hello Magpie!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/jquery-ui.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/jquery-ui-timepicker-addon.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
         <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="<%= static_path(@conn, "/js/dygraph-1.0.combined.js") %>"></script>
+        <script src="<%= static_path(@conn, "/js/spin.js") %>"></script>
+        <script src="<%= static_path(@conn, "/js/bootstrap.js") %>"></script>
+        <script src="<%= static_path(@conn, "/js/jquery-ui.js") %>"></script>
+        <script src="<%= static_path(@conn, "/js/jquery-ui-timepicker-addon.js") %>"></script>
   </head>
 
   <body>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse colorred">
     <div class="container-fluid">
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img alt="brand" src="/images/bird_logo.png" class="birdsize"></a>
       </div>
-        <button type="button" class="btn btn-default navbar-btn navbar-left">Start</button>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><p class="colorwhite navbar-text">Logget ind som: </p></li>
+          <li><a href="/users/<%= @current_user[:id] %>" type="button" class=""><%= @current_user[:username] %></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle custom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+            <ul class="dropdown-menu colorred">
+              <li><a href="/loggers">Loggere</a></li>
+              <li><a href="/loggers/new">Ny logger</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/users">Brugere</a></li>
+              <li><a href="/users/new">Ny bruger</a></li>
+            </ul>
+          </li>
         <%= if @current_user do %>
-          <a href="/logout" type="button" class="btn btn-default navbar-btn navbar-right marginright marginleft">Logout</a>
-          <a href="/users/<%= @current_user[:id] %>" type="button" class="btn btn-default navbar-btn navbar-right marginright"><%= @current_user[:username] %></a>
+          <li><button class="btn btn-danger navbar-btn" onclick="window.document.location='/logout';">Logout</button></li>
         <%= else %>
-          <a href="/login" type="button" class="btn btn-default navbar-btn navbar-right marginright">Login</a>
-        <% end %>
+          <li><button class="btn btn-danger navbar-btn marginright" onclick="window.document.location='/login';">Login</button></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </nav>
 
 <div class="container-fluid" role="main">
 
-  <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar">
-    <ul class="nav nav-sidebar">
-      <li role="presentation"><a href="">Dashboard</a></li>
-      <li role="presentation"><a href="">Loggere</a></li>
-      <li role="presentation"><a href="">Book logger</a></li>
-    </ul>
-    </div>
-
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="col-sm-12 col-md-12 main">
       <%= if get_flash(@conn, :info) do %>
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <% end %>

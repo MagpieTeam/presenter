@@ -13,18 +13,18 @@ defmodule MagpiePresenter.SessionController do
       {:ok, user} ->
         if Magpie.Password.verify_password(password, user[:password]) do
           conn
-          |> put_flash(:info, "Davs mester")
+          |> put_flash(:info, "Login success!")
           |> put_session(:user_id, user[:id])
-          |> redirect(to: "/loggers")
+          |> redirect(to: "/")
         else
           conn
-          |> put_flash(:error, "Forkert email og password for søren!")
+          |> put_flash(:error, "Forkert email og password.")
           |> render("login.html")
         end
 
       {:error, msg} ->
         conn
-        |> put_flash(:error, "Forkert email og password for søren!")
+        |> put_flash(:error, "Forkert email og password.")
         |> render("login.html")
 
     end
@@ -33,7 +33,7 @@ defmodule MagpiePresenter.SessionController do
   def delete(conn, _params) do
     conn    
     |> delete_session(:user_id)
-    |> put_flash(:error, "Tak for denne gang! logget ud!")
+    |> put_flash(:error, "Logget ud")
     |> redirect(to: "/login")
   end
 end

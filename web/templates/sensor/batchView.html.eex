@@ -6,14 +6,38 @@
       
     <div class="col-sm-12 form-inline text-center batchdate">
       <div class="form-group">
-        <input type="date" class="form-control" placeholder="Vælg startdato" aria-describedby="basic-addon1" id="from">
-        <input type="date" class="form-control" placeholder="Vælg slutdato" aria-describedby="basic-addon1" id="to">
-        <button href="" class="btn btn-success" id="get_data">Vis</button>
+        <input id="timepicker1" type="text" class="form-control input-small">
+        <input id="timepicker2" type="text" class="form-control input-small">
+        <button class="btn btn-success" id="get_data">Vis</button>
       </div>
     </div>
   </div>
 
 <script type="text/javascript">
+  var opts = {
+    lines: 13 // The number of lines to draw
+  , length: 28 // The length of each line
+  , width: 14 // The line thickness
+  , radius: 42 // The radius of the inner circle
+  , scale: 0.6 // Scales overall size of the spinner
+  , corners: 1 // Corner roundness (0..1)
+  , color: '#000' // #rgb or #rrggbb or array of colors
+  , opacity: 0.25 // Opacity of the lines
+  , rotate: 90 // The rotation offset
+  , direction: 1 // 1: clockwise, -1: counterclockwise
+  , speed: 2.2 // Rounds per second
+  , trail: 100 // Afterglow percentage
+  , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+  , zIndex: 2e9 // The z-index (defaults to 2000000000)
+  , className: 'spinner' // The CSS class to assign to the spinner
+  , top: '42%' // Top position relative to parent
+  , left: '50%' // Left position relative to parent
+  , shadow: false // Whether to render a shadow
+  , hwaccel: false // Whether to use hardware acceleration
+  , position: 'absolute' // Element positioning
+  };
+  var spinner = new Spinner(opts);
+
   g = new Dygraph(
     // containing div
     document.getElementById("graphdiv"),
@@ -36,8 +60,13 @@
     });
   $(document).ready(function() {
     $("#get_data").click(function(){
-      var from = $("#from").val();
-      var to = $("#to").val();
+      var target = document.getElementById("graphdiv");
+      spinner.spin(target);
+
+      //var from = $("#from").val();
+      //var to = $("#to").val();
+      var from = $("#timepicker1").val().replace(/\s+/g, '');
+      var to = $("#timepicker2").val().replace(/\s+/g, '');
       var url = "/loggers/<%= @sensor[:logger_id] %>/sensors/<%= @sensor[:id] %>/batch/get_data?from=" + from + "&to=" + to;
       console.log(url);
 
@@ -47,9 +76,20 @@
         }*/
       .done(function(data, status, xhr){
         g.updateOptions({file: data})
+        spinner.stop(target);
       }).fail(function(data, status, xhr){
+        spinner.stop(target);
         console.log("fail");
       });
     });
+  });
+</script>
+
+<script type="text/javascript">
+  $('#timepicker1').datetimepicker({
+    timeFormat: "HH:mm:ss",
+  });
+  $('#timepicker2').datetimepicker({
+    timeFormat: "HH:mm:ss",
   });
 </script>

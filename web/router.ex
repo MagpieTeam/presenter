@@ -21,7 +21,7 @@ defmodule MagpiePresenter.Router do
   scope "/", MagpiePresenter do
     pipe_through [:browser, :auth] # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", HomeController, :index
     
     get "/loggers/:logger_id/sensors/:id/batch", SensorController, :batch
     get "/loggers/:logger_id/sensors/:id/live", SensorController, :live
