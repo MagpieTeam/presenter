@@ -65,21 +65,17 @@
 
       //var from = $("#from").val();
       //var to = $("#to").val();
-      var from = $("#timepicker1").val().replace(/\s+/g, '');
-      var to = $("#timepicker2").val().replace(/\s+/g, '');
+      var from = $("#timepicker1").val();
+      var to = $("#timepicker2").val();
       var url = "/loggers/<%= @sensor[:logger_id] %>/sensors/<%= @sensor[:id] %>/batch/get_data?from=" + from + "&to=" + to;
       console.log(url);
 
-      $.get(url)/*,
-        success: function(data, status, xhr){
-          g.updateOptions({file: data});
-        }*/
-      .done(function(data, status, xhr){
-        g.updateOptions({file: data})
-        spinner.stop(target);
+      $.get(url).done(function(data, status, xhr){
+          g.updateOptions({file: data})
+          spinner.stop(target);
       }).fail(function(data, status, xhr){
-        spinner.stop(target);
-        console.log("fail");
+          spinner.stop(target);
+          console.log("fail");
       });
     });
   });
