@@ -37,7 +37,7 @@ defmodule MagpiePresenter.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
      {:cqerl, github: "matehat/cqerl", tag: "v0.8.0"},
-     {:magpie, github: "magpieTeam/magpie", branch: "measurements"},
+     {:magpie, github: "magpieTeam/magpie"},
      {:timex, "~> 1.0.0-rc2"}]
   end
 
