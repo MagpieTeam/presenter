@@ -21,9 +21,6 @@ defmodule MagpiePresenter.SensorController do
     {:ok, from} = DateFormat.parse(params["from"], "{0M}/{0D}/{YYYY} {h24}:{m}:{s}")
     {:ok, to} = DateFormat.parse(params["to"], "{0M}/{0D}/{YYYY} {h24}:{m}:{s}")
 
-    limit_seconds = Date.subtract(to, Time.to_timestamp(166, :minutes))
-    limit_minutes = Date.subtract(to, Time.to_timestamp(166, :hours))
-
     resolution = 
       case Date.diff(from, to, :secs) do
         x when x < 10000 ->
@@ -36,10 +33,18 @@ defmodule MagpiePresenter.SensorController do
 
     # TODO: if no date given, it returns {:error, "message"}
     measurements = Magpie.DataAccess.Measurement.get(params["id"], from, to, resolution)
-    data = Enum.reduce(measurements,"", fn(m, acc) ->
-      acc <> "#{m[:timestamp]},#{m[:value]}\n"
-    end)
 
-    json(conn, data)
+    case resolution do
+      :seconds ->
+        data = Enum.reduce(measurements,"", fn(m, acc) ->
+          acc <> "#{m[:timestamp]},#{m[:value]}\n"
+        end)
+        json(conn, data)
+      _ ->
+        data = Enum.reduce(measurements,"", fn(m, acc) ->
+          acc <> "#{m[:timestamp]},#{m[:avg]}\n"
+        end)
+        json(conn, data)
+    end
   end
 end
