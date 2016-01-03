@@ -32,9 +32,7 @@ defmodule MagpiePresenter.SensorController do
           :minutes
         _ ->
           :hours
-
-
-
+      end
 
     # TODO: if no date given, it returns {:error, "message"}
     measurements = Magpie.DataAccess.Measurement.get(params["id"], from, to, resolution)
