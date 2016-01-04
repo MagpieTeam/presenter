@@ -16,22 +16,22 @@ defmodule MagpiePresenter.Web do
   below.
   """
 
-  def model do
-    quote do
-      use Ecto.Model
+  # def model do
+  #   quote do
+  #     use Ecto.Model
 
-      import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
-    end
-  end
+  #     import Ecto.Changeset
+  #     import Ecto.Query, only: [from: 1, from: 2]
+  #   end
+  # end
 
   def controller do
     quote do
       use Phoenix.Controller
 
       alias MagpiePresenter.Repo
-      import Ecto.Model
-      import Ecto.Query, only: [from: 1, from: 2]
+      # import Ecto.Model
+      # import Ecto.Query, only: [from: 1, from: 2]
 
       import MagpiePresenter.Router.Helpers
     end
@@ -62,8 +62,8 @@ defmodule MagpiePresenter.Web do
       use Phoenix.Channel
 
       alias MagpiePresenter.Repo
-      import Ecto.Model
-      import Ecto.Query, only: [from: 1, from: 2]
+      # import Ecto.Model
+      # import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 

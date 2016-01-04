@@ -32,15 +32,6 @@ config :logger, :console, format: "[$level] $message\n"
 # and calculating stacktraces is usually expensive.
 config :phoenix, :stacktrace_depth, 20
 
-# Configure your database
-config :magpie_presenter, MagpiePresenter.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "magpie_presenter_dev",
-  hostname: "localhost",
-  pool_size: 10
-
 config :cqerl,
-  cassandra_nodes: [{{192,168,33,10}, 9042}],
+  cassandra_nodes: [{{192,168,33,20}, 9042}],
   keypace: "magpie"

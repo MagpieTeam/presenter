@@ -9,8 +9,6 @@ defmodule MagpiePresenter do
     children = [
       # Start the endpoint when the application starts
       supervisor(MagpiePresenter.Endpoint, []),
-      # Start the Ecto repository
-      worker(MagpiePresenter.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(MagpiePresenter.Worker, [arg1, arg2, arg3]),
     ]
