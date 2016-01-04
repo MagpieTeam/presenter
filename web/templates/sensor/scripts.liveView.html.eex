@@ -40,7 +40,8 @@
     var spinner = new Spinner(opts);
     var target = document.getElementById("graphdiv");
 
-    var socket = require('web/static/js/socket');
+    var live_view = require('web/static/js/socket');
+    socket = live_view.init("<%= @router_ip %>")
     socket.connect();
     var channel = null;
     $("#live_start").click(function(){
@@ -52,7 +53,7 @@
       channel = socket.channel(topic, {});
       channel.on("new_log", function(msg){
         spinner.stop(target);
-        console.log(msg);
+        console.log("received " + msg.timestamp + " at " + Date.now());
         data.push([msg.timestamp, msg.value]);
         if (data.length > 1000) {
           data.shift();

@@ -11,9 +11,11 @@ defmodule MagpiePresenter.SensorController do
 
   def live(conn, params) do
     {:ok, sensor} = Magpie.DataAccess.Sensor.get(params["id"], params["logger_id"])
+    router_ip = MagpiePresenter.Endpoint.config(:router_ip)
     
     conn
     |> assign(:sensor, sensor)
+    |> assign(:router_ip, router_ip)
     |> render("liveView.html")
   end
 
