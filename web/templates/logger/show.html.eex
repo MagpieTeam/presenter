@@ -1,23 +1,23 @@
-<div class="col-sm-12 col-md-12">
-  <div class="col-sm-4 col-md-4">
+<div class="col-sm-12 col-md-12 col-xs-12">
+  <div class="marginminus col-sm-7 col-md-7 col-xs-12">
     <h4>Valgt logger: <%= @logger[:name] %></h4>
   </div>
   <%= if @current_user[:admin] do %>
-    <div class="col-sm-1 col-md-1 col-sm-offset-5 col-md-offset-5">
-      <button onclick="window.document.location='/loggers/<%= @logger[:id] %>/edit';" class="btn btn-default">Ret logger</button>
+    <div class="col-sm-2 col-md-2 col-xs-6 col-sm-offset-1 col-md-offset-1">
+      <button onclick="window.document.location='/loggers/<%= @logger[:id] %>/edit';" class="btn btn-default marginbottom col-sm-12 col-md-12 col-xs-12">Ret logger</button>
     </div>
-    <div class="col-sm-1  col-sm-offset-1 col-md-1 col-md-offset-1">
+    <div class="col-sm-2 col-md-2 col-xs-6">
       <form method="POST" action="/loggers/<%= @logger[:id] %>" onsubmit="return confirm('er du sikker på at du vil slette <%= @logger[:name] %> ?');">
       <input type="hidden" name="_method" value="DELETE">
       <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-      <button class="btn btn-default">Slet logger</button></form>
+      <button class="btn btn-default marginbottom col-sm-12 col-md-12 col-xs-12">Slet logger</button></form>
     </div>
   <% end %>
 </div>
-<div class="col-sm-12 col-md-12">
+<div class="col-sm-12 col-md-12 col-xs-12">
   <div class="panel panel-default">
-    <div class="panel-heading col-sm-12 col-md-12">
-      <div class="col-sm-4 col-md-4">
+    <div class="panel-heading col-sm-12 col-md-12 col-xs-12">
+      <div class="col-sm-12 col-md-12 col-xs-12">
         <h5>Tilgængelige sensore</h5>
       </div>
     </div>
@@ -27,12 +27,12 @@
     			<th>SensorId</th>
     			<th>Navn</th>
     			<th>Måleenhed</th>
-          <th>Batch</th>
-          <th>Live</th>
+          <th class="hidden-xs">Batch</th>
+          <th class="hidden-xs">Live</th>
     		</tr>
     	</thead>
     	<%= for s <- @sensors do %>
-    	<tr>
+    	<tr data-toggle="collapse" data-target="#<%= s[:id] %>" class="accordion-toggle">
         <td>
           <%= s[:id] %>
         </td>
@@ -42,13 +42,20 @@
         <td>
           <%= s[:unit_of_measure] %>
         </td>
-        <td>
-          <a href="/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/batch" class ="btn btn-default">BatchView</a>
+        <td class="hidden-xs">
+          <a href="/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/batch" class ="btn btn-default">Batch</a>
         </td>
-        <td>
-          <a href= "/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/live" class ="btn btn-default">LiveView</a>
+        <td class="hidden-xs">
+          <a href= "/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/live" class ="btn btn-default">Live</a>
         </td>
       </tr>
+      <tr class="hidden-md hidden-sm hidden-lg">
+        <td colspan="6" class="hiddenRow">
+        <div class="accordion-body collapse" id="<%= s[:id] %>">
+          <a href="/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/batch" class ="btn btn-default col-xs-3 col-xs-offset-2 margininput marginbottom">Batch</a>
+          <a href= "/loggers/<%= @logger[:id] %>/sensors/<%= s[:id] %>/live" class ="btn btn-default col-xs-3 col-xs-offset-2 margininput marginbottom">Live</a>
+        </div>
+      </td>
       <% end %>
     </table>
   </div>

@@ -1,34 +1,34 @@
-<h1>ret bruger: <%= @user[:username] %></h1>
+<h2 class="marginbottombig">Ret bruger: <%= @user[:username] %></h2>
 <form action="/users/<%= @user[:id] %>/update" method="POST">
   <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
   <input type="hidden" name="_method" value="PUT">
-  <div class="col-md-1 col-sm-1 marginminus">
-      <b>Navn:</b>
+  <div class="col-md-2 col-sm-2 marginminus">
+      <b class="col-md-12 col-sm-12">Navn:</b>
   </div>
-  <div class="col-md-11 col-sm-11 input-group margininput">
-    <input type="text" class="col-md-2 col-sm-2" name="username" placeholder="skift brugernavn" value="<%= @user[:username] %>">
+  <div class="col-md-10 col-sm-10 input-group marginleft margininput">
+    <input type="text" class="col-md-3 col-sm-3" name="username" placeholder="skift brugernavn" value="<%= @user[:username] %>">
   </div>
-  <div class="col-md-1 col-sm-1 marginminus margininput">
-      <b>Email:</b>
+  <div class="col-md-2 col-sm-2 marginminus margininput">
+      <b class="col-md-12 col-sm-12">Email:</b>
   </div>
-  <div class="col-md-11 col-sm-11 input-group margininput">
-    <input type="email" class="col-md-2 col-sm-2" name="email" placeholder="Skift email" value="<%= @user[:email] %>">
+  <div class="col-md-10 col-sm-10 input-group marginleft margininput">
+    <input type="email" class="col-md-3 col-sm-3" name="email" placeholder="Skift email" value="<%= @user[:email] %>">
   </div>
-  <div class="col-md-1 col-sm-1 marginminus margininput">
-      <b>Password:</b>
+  <div class="col-md-2 col-sm-2 marginminus margininput">
+      <b class="col-md-12 col-sm-12">Password:</b>
   </div>
-  <div class="col-md-11 col-sm-11 input-group margininput">
-    <input type="password" class="col-md-2 col-sm-2" name="password" placeholder="skift password">
+  <div class="col-md-10 col-sm-10 input-group marginleft margininput">
+    <input type="password" class="col-md-3 col-sm-3" name="password" placeholder="skift password">
   </div>
   <%= if @current_user[:admin] do %>
-  <div class="checkbox">
+  <div class="checkbox col-md-12 col-sm-12">
     <label>
       <input type="checkbox" name="state" <%= if @user[:admin] do %> checked <% end %>>
       Ønskes administrator rettigheder.
     </label>
   </div>
   <% end %>
-  <div>
+  <div class="col-md-12 col-sm-12">
     <button class="btn btn-success margininput">Gem ændringer</button>
   </div>
 </form>

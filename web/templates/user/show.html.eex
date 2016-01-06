@@ -1,25 +1,23 @@
-<div class="col-sm-12 col-md-12">
-  <div class="col-sm-4 col-md-4">
+<div class="col-sm-12 col-md-12 col-xs-12">
+  <div class="col-sm-12 col-md-12 col-xs-12">
     <h2>Valgt bruger: <%= @user[:username] %></h2>
   </div>
-  <div class="text-left col-sm-12 col-md-12 margininput">
+  <div class="text-left col-sm-12 col-md-12 col-xs-12 margininput">
     <p><b>Email:</b> <%= @user[:email] %></p>
-    <p id="demo"><b>Admin rettigheder: </b></p>
+    <p id="demo" class="marginbottombig"><b>Admin rettigheder: </b></p>
   </div>
-  <div class="col-sm-12 col-md-12 margininput">
-    <div class="col-md-2 col-sm-2 marginminus">
-      <a role="button" href="/users/<%= @user[:id] %>/edit" class="btn btn-default">Ret bruger</a>
+    <div class="col-md-2 col-sm-3 col-xs-6">
+      <a role="button" href="/users/<%= @user[:id] %>/edit" class="btn btn-default marginbottom col-md-12 col-sm-12 col-xs-12">Ret bruger</a>
     </div>
     <%= if @current_user[:admin] do %>
-      <div class="col-sm-2 col-md-2 marginminusbig">
+      <div class="col-sm-3 col-md-2 col-xs-6">
         <form method="POST" action="/users/<%= @user[:id] %>" onsubmit="return confirm('er du sikker på at du vil slette <%= @user[:username] %> ?');">
           <input type="hidden" name="_method" value="DELETE">
           <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-          <button class="btn btn-default">Slet bruger</button>
+          <button class="btn btn-default col-sm-12 col-md-12 col-xs-12">Slet bruger</button>
         </form>
       </div>
     <% end %>
-  </div>
 </div>
 
 <script type="text/javascript">

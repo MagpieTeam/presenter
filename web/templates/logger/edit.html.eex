@@ -1,37 +1,26 @@
-<div class="col-md-12 col-sm-12">
-  <div class="col-md-12 col-sm-12 marginbottom marginminus">
-    <h1 class="marginbottombig">Ret logger: <%= @logger[:name] %></h1>
+    <h2 class="marginbottombig">Ret logger: <%= @logger[:name] %></h2>
+  <div class="col-md-2 col-sm-2 marginminus">
+    <b class="col-md-12 col-sm-12">Id:</b>
   </div>
-  <div class="col-md-12 col-sm-12 marginbottom marginminus">
-    <p><b>Logger id:</b> <%= @logger[:id] %></p>
+  <div class="col-md-9 col-sm-9 input-group margininput marginleft">
+    <p><%= @logger[:id] %></p>
   </div>
   <form action="/loggers/<%= @logger[:id] %>/update" method="POST">
     <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
     <input type="hidden" name="_method" value="PUT">
-    <div class="col-md-1 col-sm-1 marginminus">
-      <b>Navn:</b>
+    <div class="col-md-2 col-sm-2 marginminus">
+      <b class="col-md-12 col-sm-12">Brugernavn:</b>
     </div>
-    <div class="col-md-11 col-sm-11 input-group">
-      <input type="text" class="marginminus" name="name" value="<%= @logger[:name] %>">
+    <div class="col-md-10 col-sm-10 input-group margininput marginleft">
+      <input type="text" class="col-md-3 col-sm-3" placeholder="brugernavn" name="name" value="<%= @logger[:name] %>">
     </div>
-    <div class="col-md-12 col-sm-12 input-group margininput">
-      <b>Ønskes et nyt token?</b>
-      <div class="radio">
-        <label>
-          <input type="radio" name="passwordradio" id="optionsRadios1" value="true" class="col-md-1 col-sm-1">
-          Ja
-        </label>
-      </div>
-      <div class="radio">
-        <label>
-          <input type="radio" name="passwordradio" id="optionsRadios2" value="false" class="col-md-1 col-sm-1">
-          Nej
-        </label>
-      </div>
-      <p>Et nyt token vil blive autogenereret.</p>
+    <div class="col-md-2 col-sm-2 marginminus margininput">
+      <b class="col-md-12 col-sm-12">Token:</b>
     </div>
-    <div>
+    <div class="col-md-10 col-sm-10 input-group margininput marginleft marginbottombig">
+      <input type="text" class="col-md-3 col-sm-3" placeholder="Token" name="password">
+    </div>
+    <div class="col-md-10 col-sm-10">
       <button class="btn btn-success margininput">Gem ændringer</button>
     </div>
   </form>
-</div>

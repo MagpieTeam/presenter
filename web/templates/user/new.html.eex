@@ -1,22 +1,31 @@
-<h1>Opret bruger</h1>
+<h2 class="marginbottombig">Opret bruger</h2>
 <form action="/users/create" method="POST">
   <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-  <div class="col-md-12 col-sm-12 input-group margininput">
-    <input type="text" class="col-md-2 col-sm-2" placeholder="brugernavn" name="username">
+  <div class="col-md-2 col-sm-2 marginminus">
+      <b class="col-md-12 col-sm-12">Navn:</b>
   </div>
-  <div class="col-md-12 col-sm-12 input-group margininput">
-    <input type="text" class="col-md-2 col-sm-2" placeholder="password" name="password">
+  <div class="col-md-10 col-sm-10 input-group marginleft margininput">
+    <input type="text" class="col-md-3 col-sm-3" name="username" placeholder="skift brugernavn">
   </div>
-  <div class="col-md-12 col-sm-12 input-group margininput">
-    <input type="text" class="col-md-2 col-sm-2" placeholder="email" name="email">
+  <div class="col-md-2 col-sm-2 marginminus margininput">
+      <b class="col-md-12 col-sm-12">Email:</b>
   </div>
-  <div class="checkbox">
+  <div class="col-md-10 col-sm-10 input-group marginleft margininput">
+    <input type="email" class="col-md-3 col-sm-3" name="email" placeholder="Skift email">
+  </div>
+  <div class="col-md-2 col-sm-2 marginminus margininput">
+      <b class="col-md-12 col-sm-12">Password:</b>
+  </div>
+  <div class="col-md-10 col-sm-10 input-group marginleft margininput">
+    <input type="password" class="col-md-3 col-sm-3" name="password" placeholder="skift password">
+  </div>
+  <div class="checkbox col-md-12 col-sm-12">
     <label>
-      <input type="checkbox" value="true" name="state">
+      <input type="checkbox" name="state">
       Ønskes administrator rettigheder.
     </label>
   </div>
-  <div class="margininput">
+  <div class="col-md-12 col-sm-12 margininput">
     <button class="btn btn-success">Gem bruger</button>
   </div>
 </form>
