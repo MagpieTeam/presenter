@@ -1,5 +1,6 @@
 defmodule MagpiePresenter.FetchUser do
   import Plug.Conn
+  import Phoenix.Controller
 
   def init(opts), do: nil
 
@@ -14,7 +15,6 @@ defmodule MagpiePresenter.FetchUser do
                 |> put_flash(:error, "Denne bruger eksisterer ikke.")
                 |> redirect(to: "/login")
         end
-      end
     end
   end
 end
