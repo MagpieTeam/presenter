@@ -7,8 +7,14 @@ defmodule MagpiePresenter.FetchUser do
     case get_session(conn, :user_id) do
       nil -> assign(conn, :current_user, nil)
       user_id ->
-        {:ok, user} = Magpie.DataAccess.User.get(user_id)
-        assign(conn, :current_user, user)
+        case Magpie.DataAccess.User.get(user_id) do
+          {:ok, user} -> assign(conn, :current_user, user)
+          _ ->  conn    
+                |> delete_session(:user_id)
+                |> put_flash(:error, "Denne bruger eksisterer ikke.")
+                |> redirect(to: "/login")
+        end
+      end
     end
   end
 end

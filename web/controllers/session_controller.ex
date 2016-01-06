@@ -13,7 +13,7 @@ defmodule MagpiePresenter.SessionController do
       {:ok, user} ->
         if Magpie.Password.verify_password(password, user[:password]) do
           conn
-          |> put_flash(:info, "Login success!")
+          |> put_flash(:info, "Du er nu logget ind")
           |> put_session(:user_id, user[:id])
           |> redirect(to: "/")
         else
@@ -33,7 +33,7 @@ defmodule MagpiePresenter.SessionController do
   def delete(conn, _params) do
     conn    
     |> delete_session(:user_id)
-    |> put_flash(:error, "Logget ud")
+    |> put_flash(:info, "Logget ud")
     |> redirect(to: "/login")
   end
 end
