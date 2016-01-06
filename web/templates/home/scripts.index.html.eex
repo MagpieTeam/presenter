@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    var user_socket = require('web/static/js/socket');
+    socket = user_socket.init("<%= @router_ip %>");
+    socket.connect();
+    var channel = socket.channel("loggers:status",{})
+    channel.on("new_status", function(msg){
+      console.log(msg);
+      msg.status.forEach(function(logger, index, array){
+        var img = "";
+
+        if (logger[2] == "offline")
+          {
+            img = "red_circle.png";
+          }
+        else if (logger[2] == "online")
+          {
+            img = "green_circle.png";
+          }
+        else if (logger[2] == "unknown")
+          {
+            img = "Grey_circle.png";
+          }
+
+        $('#status tr:last').after("<tr><td>" + logger[0] + "</td><td>whaaat</td><td>" + logger[1] + "</td><td><img src='/images/" + img + "' class='redstatussize'></td></tr>");
+              });      
+            });
+            channel.join()
+      .receive('ok', function (resp) { console.log('Joined successfully', resp);})
+      .receive('error', function (resp) { console.log('Unable to join', resp);});
+  });
+</script>

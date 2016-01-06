@@ -40,8 +40,8 @@
     var spinner = new Spinner(opts);
     var target = document.getElementById("graphdiv");
 
-    var live_view = require('web/static/js/socket');
-    socket = live_view.init("<%= @router_ip %>")
+    var user_socket = require('web/static/js/socket');
+    socket = user_socket.init("<%= @router_ip %>");
     socket.connect();
     var channel = null;
     $("#live_start").click(function(){

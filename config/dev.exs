@@ -12,7 +12,8 @@ config :magpie_presenter, MagpiePresenter.Endpoint,
   code_reloader: true,
   cache_static_lookup: false,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]]
+  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]],
+  router_ip: "192.168.1.103"
 
 # Watch static and templates for browser reloading.
 config :magpie_presenter, MagpiePresenter.Endpoint,
@@ -33,5 +34,5 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 config :cqerl,
-  cassandra_nodes: [{{192,168,33,20}, 9042}],
+  cassandra_nodes: [{{192,168,33,10}, 9042}],
   keypace: "magpie"

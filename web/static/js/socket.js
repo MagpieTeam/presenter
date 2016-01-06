@@ -5,7 +5,7 @@
 // and connect at the socket path in "lib/my_app/endpoint.ex":
 import {Socket} from "deps/phoenix/web/static/js/phoenix"
 
-let LiveStream = {
+let UserSocket = {
     init(router_ip) {
         let socket = new Socket("ws://" + router_ip + ":5000/sockets/user", {params: {token: window.userToken}})
         return socket
@@ -64,4 +64,4 @@ let LiveStream = {
 //  .receive("ok", resp => { console.log("Joined successfully", resp) })
 //  .receive("error", resp => { console.log("Unable to join", resp) })
 
-export default LiveStream
+export default UserSocket
