@@ -1,14 +1,20 @@
-<h1>Opret logger</h1>
+<h2 class="marginbottombig">Opret logger</h2>
 <form action="/loggers/create" method="POST">
   <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-  <div class="col-md-12 col-sm-12 input-group">
-    <input type="text" class="col-md-2 col-sm-2" placeholder="brugernavn" name="name">
+  <div class="col-md-2 col-sm-2 marginminus">
+    <b class="col-md-12 col-sm-12">Brugernavn:</b>
   </div>
-  <div class="col-md-12 col-sm-12 input-group margininput">
-    <input type="text" class="col-md-2 col-sm-2" placeholder="Token" name="password">
+  <div class="col-md-10 col-sm-10 input-group marginleft margininput">
+    <input type="text" class="col-md-3 col-sm-3" placeholder="brugernavn" name="name">
   </div>
-    <p class="margininput">Id til indtastning i loggeren genereres automatisk.</p>
-  <div>
+  <div class="col-md-2 col-sm-2 marginminus margininput">
+    <b class="col-md-12 col-sm-12">Token:</b>
+  </div>
+  <div class="col-md-10 col-sm-10 input-group margininput marginleft">
+    <input type="text" class="col-md-3 col-sm-3" placeholder="Token" name="password">
+  </div>
+    <p class="margininput marginleft marginbottombig">Id til indtastning i loggeren genereres automatisk.</p>
+  <div class="col-md-12 col-sm-12">
     <button class="btn btn-success">Gem logger</button>
   </div>
 </form>

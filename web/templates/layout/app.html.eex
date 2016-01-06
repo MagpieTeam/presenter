@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Magpie!</title>
+    <title>DTU Magpie</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/bootstrap.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/jquery-ui.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/jquery-ui-timepicker-addon.css") %>">
@@ -42,19 +42,19 @@
           <li><a href="/users/<%= @current_user[:id] %>" type="button" class=""><%= @current_user[:username] %></a></li>
           <%= end %>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle custom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle custom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu:<span class="caret"></span></a>
             <ul class="dropdown-menu colorred">
               <li><a href="/loggers">Loggere</a></li>
-              <li><a href="/loggers/new">Ny logger</a></li>
+              <li><a href="/loggers/new">Opret logger</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="/users">Brugere</a></li>
-              <li><a href="/users/new">Ny bruger</a></li>
+              <li><a href="/users/new">Opret bruger</a></li>
             </ul>
           </li>
         <%= if @current_user do %>
-          <li><button class="btn btn-danger navbar-btn" onclick="window.document.location='/logout';">Logout</button></li>
+          <li><button class="btn btn-danger navbar-btn" onclick="window.document.location='/logout';">Log ud</button></li>
         <%= else %>
-          <li><button class="btn btn-danger navbar-btn marginright" onclick="window.document.location='/login';">Login</button></li>
+          <li><button class="btn btn-danger navbar-btn marginright" onclick="window.document.location='/login';">Log ind</button></li>
           <% end %>
         </ul>
       </div>
