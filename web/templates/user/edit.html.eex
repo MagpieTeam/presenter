@@ -6,7 +6,7 @@
       <b class="col-md-12 col-sm-12">Navn:</b>
   </div>
   <div class="col-md-10 col-sm-10 input-group marginleft margininput">
-    <input type="text" class="col-md-3 col-sm-3" name="username" placeholder="skift brugernavn" value="<%= @user[:username] %>">
+    <input type="text" class="col-md-3 col-sm-3" name="username" placeholder="Skift brugernavn" value="<%= @user[:username] %>">
   </div>
   <div class="col-md-2 col-sm-2 marginminus margininput">
       <b class="col-md-12 col-sm-12">Email:</b>
@@ -18,7 +18,7 @@
       <b class="col-md-12 col-sm-12">Password:</b>
   </div>
   <div class="col-md-10 col-sm-10 input-group marginleft margininput">
-    <input type="password" class="col-md-3 col-sm-3" name="password" placeholder="skift password">
+    <input type="password" class="col-md-3 col-sm-3" name="password" placeholder="Skift password">
   </div>
   <%= if @current_user[:admin] do %>
   <div class="checkbox col-md-12 col-sm-12">

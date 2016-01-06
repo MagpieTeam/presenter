@@ -5,19 +5,19 @@
       <b class="col-md-12 col-sm-12">Navn:</b>
   </div>
   <div class="col-md-10 col-sm-10 input-group marginleft margininput">
-    <input type="text" class="col-md-3 col-sm-3" name="username" placeholder="skift brugernavn">
+    <input type="text" class="col-md-3 col-sm-3" name="username" placeholder="Brugernavn">
   </div>
   <div class="col-md-2 col-sm-2 marginminus margininput">
       <b class="col-md-12 col-sm-12">Email:</b>
   </div>
   <div class="col-md-10 col-sm-10 input-group marginleft margininput">
-    <input type="email" class="col-md-3 col-sm-3" name="email" placeholder="Skift email">
+    <input type="email" class="col-md-3 col-sm-3" name="email" placeholder="Email">
   </div>
   <div class="col-md-2 col-sm-2 marginminus margininput">
       <b class="col-md-12 col-sm-12">Password:</b>
   </div>
   <div class="col-md-10 col-sm-10 input-group marginleft margininput">
-    <input type="password" class="col-md-3 col-sm-3" name="password" placeholder="skift password">
+    <input type="password" class="col-md-3 col-sm-3" name="password" placeholder="Password">
   </div>
   <div class="checkbox col-md-12 col-sm-12">
     <label>
