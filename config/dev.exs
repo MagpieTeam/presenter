@@ -13,7 +13,7 @@ config :magpie_presenter, MagpiePresenter.Endpoint,
   cache_static_lookup: false,
   check_origin: false,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin"]],
-  router_ip: "192.168.1.103"
+  router_ip: "127.0.0.1"
 
 # Watch static and templates for browser reloading.
 config :magpie_presenter, MagpiePresenter.Endpoint,

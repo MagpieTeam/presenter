@@ -91,8 +91,15 @@ body > div.container > div > div:nth-child(2) > div:nth-child(2) > input {
 }
 
 .greenstatussize {
-	width: 30px;
-	height: 30px;
+	width: 32px;
+	height: 32px;
+	margin-left: -3px;
+}
+
+.greystatussize {
+	width: 28px;
+	height: 26px;
+	margin-left: -2px;
 }	
 
 #bs-example-navbar-collapse-1 > ul > li.dropdown.open > a {

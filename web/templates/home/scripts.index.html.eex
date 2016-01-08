@@ -7,26 +7,41 @@
     channel.on("new_status", function(msg){
       console.log(msg);
       msg.status.forEach(function(logger, index, array){
+        var row = $('#' + logger[0]);
+
         var img = "";
+        var size = "";
 
-        if (logger[2] == "offline")
-          {
-            img = "red_circle.png";
-          }
-        else if (logger[2] == "online")
-          {
-            img = "green_circle.png";
-          }
-        else if (logger[2] == "unknown")
-          {
-            img = "Grey_circle.png";
-          }
+        if (logger[3] == "offline")
+        {
+          img = "red_circle.png";
+          size = "redstatussize";
+        }
+        else if (logger[3] == "online")
+        {
+          img = "green_circle.png";
+          size = "greenstatussize";
+        }
+        else if (logger[3] == "unknown")
+        {
+          img = "Grey_circle.png";
+          size = "greystatussize";
+        }
 
-        $('#status tr:last').after("<tr><td>" + logger[0] + "</td><td>whaaat</td><td>" + logger[1] + "</td><td><img src='/images/" + img + "' class='redstatussize'></td></tr>");
-              });      
-            });
-            channel.join()
-      .receive('ok', function (resp) { console.log('Joined successfully', resp);})
-      .receive('error', function (resp) { console.log('Unable to join', resp);});
+        console.log(img);
+
+        if (row.length == 0)
+        {
+          $('#status tr:last').after("<tr id=" + logger[0] + "><td class='hidden-xs'>" + logger[0] + "</td><td>" + logger[1] + "</td><td>" + logger[2] + "</td><td><img src='/images/" + img + "' class=" + size + "></td></tr>");
+        }
+        else
+        {
+          row.replaceWith("<tr id=" + logger[0] + "><td class='hidden-xs'>" + logger[0] + "</td><td>" + logger[1] + "</td><td>" + logger[2] + "</td><td><img src='/images/" + img + "' class=" + size + "></td></tr>");
+        }
+      });      
+    });
+    channel.join()
+    .receive('ok', function (resp) { console.log('Joined successfully', resp);})
+    .receive('error', function (resp) { console.log('Unable to join', resp);});
   });
 </script>
